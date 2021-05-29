@@ -9,6 +9,7 @@ import Register from './components/Register/Register'
 import Particles from 'react-particles-js';
 import { useEffect, useState } from 'react'
 
+const herokuURL = "https://afternoon-shore-30673.herokuapp.com"
 
 const particlesOptions = {
   particles: {
@@ -71,7 +72,7 @@ let onInputChange = (event) => {
 
 let onButtonSubmit = () => {
   setImageUrl(input)
-  fetch('http://localhost:2000/imageurl/', {
+  fetch(`${herokuURL}/imageurl/`, {
     method: 'post',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
@@ -81,7 +82,7 @@ let onButtonSubmit = () => {
     .then(response => response.json())
     .then(response => {
       if (response) {
-        fetch('http://localhost:2000/image', {
+        fetch(`${herokuURL}/image`, {
           method: 'put',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
